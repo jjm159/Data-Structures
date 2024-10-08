@@ -105,7 +105,27 @@ int main()
 
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+    Stack s;
+    s.top = NULL;
+
+    push(&s, node);
+
+    while (s.top != NULL)
+    {
+        BTNode* current = pop(&s);
+
+        if (current->item < m) {
+            printf("%d ", current->item);
+        }
+
+        if (current->left != NULL) {
+            push(&s, current->left);
+        }
+        if (current->right != NULL) {
+            push(&s, current->right);
+        }
+    }
+    
 }
 
 //////////////////////////////////////////////////////////////////////////////////
