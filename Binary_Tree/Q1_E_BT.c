@@ -114,9 +114,47 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int identical(BTNode *tree1, BTNode *tree2)
-
 {
-   /* add your code here */
+    // value랑 구조가 같아야 함     
+
+    Stack s1;
+    s1.top = NULL;
+    Stack s2;
+    s2.top = NULL;
+
+    push(&s1, tree1);
+    push(&s2, tree2);
+
+    while (s1.top != NULL && s2.top != NULL)
+    {
+        BTNode* a = pop(&s1);
+        BTNode* b = pop(&s2);
+
+        if (a->item != b->item) {
+            return 0;
+        }
+
+        if (a->left != NULL) {
+            push(&s1, a->left);
+        }
+
+        if (a->right != NULL) {
+            push(&s1, a->right);
+        }
+
+        if (b->left != NULL) {
+            push(&s2, b->left);
+        }
+
+        if (b->right != NULL) {
+            push(&s2, b->right);
+        }
+    }
+    
+    if ((s1.top == NULL && s2.top != NULL) || (s1.top != NULL && s2.top == NULL)) {
+        return 0;
+    }
+    return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
