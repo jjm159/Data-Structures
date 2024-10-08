@@ -112,7 +112,26 @@ int main()
 
 void reverse(Queue *q)
 {
-/* add your code here */
+	// stack을 사용해서 뒤집기 
+	Stack s;
+	s.ll.size = 0;
+	s.ll.head = NULL;
+
+	printf("%d\n", s.ll.size);
+
+	while (!isEmptyQueue(q))
+	{
+		int item = dequeue(q);
+		printf("dequeue %d", item);
+		push(&s, item);
+	}
+
+	while (!isEmptyStack(&s))
+	{
+		int item = pop(&s);
+		printf("pop %d", item);
+		enqueue(q, item);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
