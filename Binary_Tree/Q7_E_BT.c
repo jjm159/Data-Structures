@@ -102,7 +102,29 @@ int main()
 
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+    Stack s;
+    s.top = NULL;
+
+    push(&s, node);
+
+    int result = __INT_MAX__;
+
+    while (s.top != NULL)
+    {
+        BTNode* current = pop(&s);
+
+        if (current->item < result) {
+            result = current->item;
+        }
+
+        if (current->left != NULL) {
+            push(&s, current->left);
+        }
+        if (current->right != NULL) {
+            push(&s, current->right);
+        }
+    }
+    return result;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
