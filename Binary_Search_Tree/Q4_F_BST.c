@@ -91,7 +91,34 @@ int main()
 
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
+	Stack s;
+	s.top = NULL;
+
+	BSTNode* prev = NULL;
+	BSTNode* curr = root;
+
+	while (!isEmpty(&s) || curr != NULL)
+	{
+		while (curr != NULL)
+		{
+			push(&s, curr);
+			curr = curr->left;
+		}
+
+		curr = pop(&s);
+
+		// right가 존재하는데, 이미 right에 들린게 아니라면 right로 이동
+		if (curr->right != NULL && prev != curr->right) {
+			push(&s, curr); // 현재 노드 다시 넣음 
+			curr = curr->right;
+		} else {
+			int item = curr->item;
+			printf("%d ", item);
+			prev = curr;
+			curr = NULL;
+		}
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
