@@ -134,6 +134,13 @@ int identical(BTNode *tree1, BTNode *tree2)
             return 0;
         }
 
+        if ((a->left != NULL && b->left == NULL) || (a->left == NULL && b->left != NULL)) {
+            return 0;
+        }
+        if ((a->right != NULL && b->right == NULL) || (a->right == NULL && b->right != NULL)) {
+            return 0;
+        }
+
         if (a->left != NULL) {
             push(&s1, a->left);
         }
